@@ -24,6 +24,10 @@ export const companyTypeDefs = `#graphql
     userId: String
   }
 
+  type Query {
+    getCompanies: [Company]
+    getCompanyBy(query: String!): [Company]
+  }
 
   type Mutation {
     createCompany(company: CompanyInput): CompanyId
