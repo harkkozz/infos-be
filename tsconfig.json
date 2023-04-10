@@ -14,6 +14,6 @@
     "types": ["node"],
     "baseUrl": "src"
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["src", "src/**/d.ts"]
+  "exclude": ["node_modules", "dist", ".vscode"],
+  "include": ["src/**/*.ts", "src/**/d.ts"]
 }

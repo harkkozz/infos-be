@@ -1,45 +1,26 @@
-# Infos App (Backend)
+# Infos
 
-This project using [PNPM](https://pnpm.io/) as package manager.
+Here you can register and create some desired company information so anyone can look at it easily. You can find a company without any registration and see contact info, but you can't edit, delete or create a company. You can edit and delete a company only if you're the author of that company. If you are authorized, you can create companies.
 
-## Install PNPM globally in terms of using it to manage packages and run the scripts
+This is a Backend repository for the Infos project, using Node.js version 18.x and pnpm as a package manager.
 
-### `npm i -g pnpm`
+## Installation
 
-## Available Scripts
+Clone the repository: git clone https://github.com/yourusername/infos-be.git
+Navigate to the project directory: cd infos-be
+Install dependencies: pnpm install
 
-In the project directory, you can run:
+## Usage
 
-### `pnpm start`
+Set environment variables by creating a .env file and filling in the necessary values. You can use .env.example as a template.
+Start the server: pnpm start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Scripts
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+pnpm start: Starts the server using nodemon and the configuration in nodemon.json.
+pnpm format: Formats the code in the src directory using prettier.
+pnpm lint: Lints the code in the src directory using eslint with the --fix and --cache options.
 
-### `pnpm build`
+## License
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `pnpm format`
-
-Format files using Prettier.
-
-### `pnpm lint`
-
-Runs eslint from local configuration which will check potentional warnings/errors
-
-## GraphQL Apollo/Server
-
-Runs `GraphQL` and uses `apollo server` (`localhost:4000`) where you can find different |
-`Queries` and `Mutations`:
-
-- For companies (which is entity where user creates one or many companies) with some basic informations of that company such as number, address etc.
-- For users (which is entity for each user who wants to create companies and info for it),
+This project is licensed under the ISC License.
