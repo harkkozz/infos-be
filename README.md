@@ -6,7 +6,7 @@ This is a Backend repository for the Infos project, using Node.js version 18.x a
 
 ## Installation
 
-Clone the repository: git clone https://github.com/yourusername/infos-be.git
+Clone the repository: git clone https://github.com/harkkozz/infos-be.git
 Navigate to the project directory: cd infos-be
 Install dependencies: pnpm install
 
