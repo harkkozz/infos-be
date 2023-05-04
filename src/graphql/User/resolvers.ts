@@ -11,7 +11,14 @@ export const userResolvers = {
       const matchedPassword = await bcrypt.compare(user.password, userById.password);
 
       if (matchedPassword) {
-        const token = jwt.sign({ user: userById }, 'secret123', { expiresIn: '10h' });
+        const token = jwt.sign(
+          { user: { name: userById.name, email: userById.email } },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: '12h',
+            algorithm: 'HS512'
+          }
+        );
 
         return {
           message: 'Successfull',

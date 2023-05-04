@@ -28,7 +28,7 @@ export const userTypeDefs = `#graphql
   }
 
   type Mutation {
-    signup(user: UserInput): User
-    login(user: LoginUserInput): PayloadAuthUser
+    signup(user: UserInput!): User
+    login(user: LoginUserInput!): PayloadAuthUser
   }
 `;
