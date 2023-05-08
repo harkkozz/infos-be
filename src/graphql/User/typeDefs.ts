@@ -1,4 +1,16 @@
 export const userTypeDefs = `#graphql
+type Company {
+    id: ID
+    companyName: String
+    email: String
+    phoneNumber: String
+    city: String
+    state: String
+    createdAt: String
+    updatedAt: String
+    userId: ID
+  }
+
   type User {
     id: ID
     name: String
@@ -25,6 +37,7 @@ export const userTypeDefs = `#graphql
 
   type Query {
     getUser(id: String): User
+    getUserCompanies(id: String): [Company]
   }
 
   type Mutation {

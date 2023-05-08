@@ -3,7 +3,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
@@ -32,7 +31,6 @@ export class Company extends BaseEntity {
   phoneNumber: string;
 
   @ManyToOne(() => User, user => user.companies)
-  @JoinColumn({ name: 'userId' })
   user: User;
 
   @Column()

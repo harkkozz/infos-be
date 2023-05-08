@@ -12,7 +12,7 @@ export const userResolvers = {
 
       if (matchedPassword) {
         const token = jwt.sign(
-          { user: { name: userById.name, email: userById.email } },
+          { user: { id: userById.id, name: userById.name, email: userById.email } },
           process.env.JWT_SECRET,
           {
             expiresIn: '12h',
@@ -46,6 +46,16 @@ export const userResolvers = {
     }
   },
   Query: {
-    getUser: async (_, user: User) => await User.findOne({ where: { id: user.id } })
+    getUser: async (_, user: User) => await User.findOne({ where: { id: user.id } }),
+    getUserCompanies: async (_, user: User) => {
+      const { companies } = await User.findOne({
+        where: { id: user.id },
+        relations: {
+          companies: true
+        }
+      });
+
+      return companies;
+    }
   }
 };
