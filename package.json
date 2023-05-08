@@ -7,7 +7,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "nodemon --config nodemon.json",
+    "dev": "NODE_ENV=development nodemon --config nodemon.json",
+    "prod": "NODE_ENV=production nodemon --config nodemon.json",
     "format": "prettier --write src",
     "lint": "eslint src --fix --cache"
   },

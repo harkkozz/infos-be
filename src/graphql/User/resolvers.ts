@@ -15,7 +15,7 @@ export const userResolvers = {
           { user: { id: userById.id, name: userById.name, email: userById.email } },
           process.env.JWT_SECRET,
           {
-            expiresIn: '12h',
+            expiresIn: process.env.TOKEN_EXPIRE,
             algorithm: 'HS512'
           }
         );
