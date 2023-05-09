@@ -30,14 +30,14 @@ type Company {
   }
 
   input UserInput {
-    name: String
+    name: String!
     email: String!
     password: String!
   }
 
   type Query {
-    getUser(id: String): User
-    getUserCompanies(id: String): [Company]
+    getUser(id: String): User!
+    getUserCompanies(id: String): [Company]!
   }
 
   type Mutation {
