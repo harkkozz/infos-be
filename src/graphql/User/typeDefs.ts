@@ -6,6 +6,7 @@ type Company {
     phoneNumber: String
     city: String
     state: String
+    slug: String
     createdAt: String
     updatedAt: String
     userId: ID
@@ -15,6 +16,7 @@ type Company {
     id: ID
     name: String
     email: String
+    slug: String
     createdAt: String
     updatedAt: String
   }

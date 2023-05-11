@@ -4,7 +4,6 @@ declare global {
       NODE_ENV: 'development' | 'production';
       JWT_SECRET: string;
       TOKEN_EXPIRE: string;
-      DB_NAME: string;
       DB_USERNAME: string;
       DB_PASSWORD: string;
       DB_HOST: string;

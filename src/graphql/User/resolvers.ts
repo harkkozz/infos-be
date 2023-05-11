@@ -4,15 +4,26 @@ import jwt from 'jsonwebtoken';
 
 import { User } from 'entities/User';
 
+interface UserPayload {
+  user: User;
+}
+
 export const userResolvers = {
   Mutation: {
-    login: async (_, { user }) => {
+    login: async (_, { user }: UserPayload) => {
       const userById = await User.findOne({ where: { email: user.email } });
       const matchedPassword = await bcrypt.compare(user.password, userById.password);
 
       if (matchedPassword) {
         const token = jwt.sign(
-          { user: { id: userById.id, name: userById.name, email: userById.email } },
+          {
+            user: {
+              id: userById.id,
+              name: userById.name,
+              email: userById.email,
+              slug: userById.slug
+            }
+          },
           process.env.JWT_SECRET,
           {
             expiresIn: process.env.TOKEN_EXPIRE,
@@ -33,16 +44,17 @@ export const userResolvers = {
         }
       });
     },
-    signup: async (_, { user }) => {
+    signup: async (_, { user }: UserPayload) => {
+      const u = new User();
       const hashedPassword = await bcrypt.hash(user.password, 10);
 
-      const { raw } = await User.createQueryBuilder()
-        .insert()
-        .into(User)
-        .values({ ...user, password: hashedPassword })
-        .execute();
+      u.name = user.name;
+      u.password = hashedPassword;
+      u.email = user.email;
 
-      return await User.findOne({ where: { id: raw[0].id } });
+      const data = await u.save();
+
+      return data;
     }
   },
   Query: {

@@ -6,14 +6,13 @@ export const companyTypeDefs = `#graphql
     phoneNumber: String
     city: String
     state: String
+    slug: String
     createdAt: String
     updatedAt: String
     userId: ID
   }
 
-  type CompanyId {
-    id: ID
-  }
+
 
   input CompanyInput {
     companyName: String
@@ -30,6 +29,6 @@ export const companyTypeDefs = `#graphql
   }
 
   type Mutation {
-    createCompany(company: CompanyInput): CompanyId
+    createCompany(company: CompanyInput!): Company
   }
 `;

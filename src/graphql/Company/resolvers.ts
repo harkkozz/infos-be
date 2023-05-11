@@ -1,5 +1,9 @@
 import { Company } from 'entities/Company';
 
+interface CompanyPayload {
+  company: Company;
+}
+
 export const companyResolvers = {
   Query: {
     getCompanies: async () => {
@@ -23,16 +27,19 @@ export const companyResolvers = {
     }
   },
   Mutation: {
-    createCompany: async (_, { company }) => {
-      const { raw } = await Company.createQueryBuilder()
-        .insert()
-        .into(Company)
-        .values(company)
-        .execute();
+    createCompany: async (_, { company }: CompanyPayload) => {
+      const c = new Company();
 
-      const [companyId] = raw;
+      c.companyName = company.companyName;
+      c.city = company.city;
+      c.state = company.state;
+      c.email = company.email;
+      c.phoneNumber = company.phoneNumber;
+      c.userId = company.userId;
 
-      return companyId;
+      const data = await c.save();
+
+      return { ...data };
     }
   }
 };

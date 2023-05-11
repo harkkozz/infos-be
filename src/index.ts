@@ -1,7 +1,7 @@
 import 'dotenvConfig';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
-import { AppDataSource } from 'db/dbConnect';
+import { AppDataSource } from 'db/dataSource';
 import { companyResolvers } from 'graphql/Company/resolvers';
 import { companyTypeDefs } from 'graphql/Company/typeDefs';
 import { userResolvers } from 'graphql/User/resolvers';

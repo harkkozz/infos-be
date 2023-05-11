@@ -1,12 +1,17 @@
 import {
+  AfterInsert,
   BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
+  Like,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
+import slugify from 'slugify';
 
 import { User } from './User';
 
@@ -15,7 +20,7 @@ export class Company extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'companyName', unique: true })
+  @Column({ unique: true })
   companyName: string;
 
   @Column()
@@ -24,7 +29,7 @@ export class Company extends BaseEntity {
   @Column()
   city: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -36,9 +41,24 @@ export class Company extends BaseEntity {
   @Column()
   userId: string;
 
+  @Column({ nullable: true })
+  slug: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async setSlug() {
+    const c = await Company.find({
+      where: { slug: Like(`%${this.companyName.toLowerCase().trim()}%`) }
+    });
+
+    this.slug = `${slugify(this.companyName, { lower: true })}${
+      c.length > 0 ? `-${c.length}` : ''
+    }`;
+  }
 }
