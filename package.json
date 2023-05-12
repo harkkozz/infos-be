@@ -7,7 +7,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "NODE_ENV=development nodemon --config nodemon.json",
+    "dev": "NODE_ENV=development && pnpm run migration:generate src/db/migrations/Migration && pnpm run migration:run && nodemon --config nodemon.json",
     "prod": "NODE_ENV=production nodemon --config nodemon.json",
     "build": "tsc",
     "typeorm": "npx typeorm-ts-node-esm -d ./src/db/dataSource.ts",

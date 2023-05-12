@@ -1,5 +1,4 @@
 import {
-  AfterInsert,
   BaseEntity,
   BeforeInsert,
   BeforeUpdate,
@@ -54,7 +53,7 @@ export class Company extends BaseEntity {
   @BeforeUpdate()
   async setSlug() {
     const c = await Company.find({
-      where: { slug: Like(`%${this.companyName.toLowerCase().trim()}%`) }
+      where: { slug: Like(`${slugify(this.companyName, { lower: true })}%`) }
     });
 
     this.slug = `${slugify(this.companyName, { lower: true })}${
