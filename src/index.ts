@@ -17,7 +17,7 @@ AppDataSource.initialize()
     // here you can start to work with your database
     console.log('connected');
     const { url } = await startStandaloneServer(server);
-
     console.log(`Connected to ${url}`);
+    console.log(`NODE_ENV = **${process.env.NODE_ENV}**`);
   })
   .catch(error => console.log(error));

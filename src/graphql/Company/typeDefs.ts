@@ -1,11 +1,12 @@
 export const companyTypeDefs = `#graphql
   type Company {
-    id: ID
-    companyName: String
-    email: String
-    phoneNumber: String
-    city: String
-    state: String
+    id: ID!
+    companyName: String!
+    email: String!
+    areaCode: String!
+    phoneNumber: String!
+    city: String!
+    state: String!
     slug: String
     createdAt: String
     updatedAt: String
@@ -15,20 +16,23 @@ export const companyTypeDefs = `#graphql
 
 
   input CompanyInput {
-    companyName: String
-    email: String
-    phoneNumber: String
-    city: String
-    state: String
-    userId: String
+    companyName: String!
+    email: String!
+    areaCode: String!
+    phoneNumber: String!
+    city: String!
+    state: String!
+    userId: String!
   }
 
   type Query {
-    getCompanies: [Company]
-    getCompanyBy(query: String!): [Company]
+    getCompanies: [Company]!
+    searchCompany(query: String!): [Company]!
+    getCompanyById(id: String!): Company!
   }
 
   type Mutation {
-    createCompany(company: CompanyInput!): Company
+    createCompany(company: CompanyInput!): Company!
+    editCompany(id: String!, company: CompanyInput!): Company!
   }
 `;

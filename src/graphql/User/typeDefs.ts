@@ -1,6 +1,6 @@
 export const userTypeDefs = `#graphql
 type Company {
-    id: ID
+    id: ID!
     companyName: String
     email: String
     phoneNumber: String
@@ -13,7 +13,7 @@ type Company {
   }
 
   type User {
-    id: ID
+    id: ID!
     name: String
     email: String
     slug: String

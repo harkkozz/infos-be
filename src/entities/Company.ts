@@ -34,6 +34,9 @@ export class Company extends BaseEntity {
   @Column()
   phoneNumber: string;
 
+  @Column({ nullable: true })
+  areaCode: string;
+
   @ManyToOne(() => User, user => user.companies)
   user: User;
 
