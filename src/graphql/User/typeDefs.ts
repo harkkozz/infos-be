@@ -1,24 +1,12 @@
 export const userTypeDefs = `#graphql
-type Company {
-    id: ID!
-    companyName: String
-    email: String
-    phoneNumber: String
-    city: String
-    state: String
-    slug: String
-    createdAt: String
-    updatedAt: String
-    userId: ID
-  }
-
   type User {
-    id: ID!
+    id: ID
     name: String
     email: String
     slug: String
     createdAt: String
     updatedAt: String
+    companies: [Company]
   }
 
   type PayloadAuthUser {
@@ -38,7 +26,7 @@ type Company {
   }
 
   type Query {
-    getUser(id: String): User!
+    getUser(id: String): User
     getUserCompanies(id: String): [Company]!
   }
 

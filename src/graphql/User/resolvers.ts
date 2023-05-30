@@ -3,6 +3,7 @@ import { GraphQLError } from 'graphql';
 import jwt from 'jsonwebtoken';
 
 import { User } from 'entities/User';
+import { Company } from 'entities/Company';
 
 interface UserPayload {
   user: User;
@@ -68,6 +69,17 @@ export const userResolvers = {
       });
 
       return companies;
+    }
+  },
+  User: {
+    companies: async parent => {
+      console.log('executed');
+      console.log(parent);
+      const compsForU = await Company.find({ where: { userId: parent.id } });
+
+      console.log(compsForU);
+
+      return compsForU;
     }
   }
 };

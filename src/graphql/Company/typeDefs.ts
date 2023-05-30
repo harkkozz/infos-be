@@ -13,8 +13,6 @@ export const companyTypeDefs = `#graphql
     userId: ID
   }
 
-
-
   input CompanyInput {
     companyName: String!
     email: String!
