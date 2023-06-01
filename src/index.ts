@@ -2,10 +2,10 @@ import 'dotenvConfig';
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { AppDataSource } from 'db/dataSource';
-import { companyResolvers } from 'graphql/Company/resolvers';
-import { companyTypeDefs } from 'graphql/Company/typeDefs';
-import { userResolvers } from 'graphql/User/resolvers';
-import { userTypeDefs } from 'graphql/User/typeDefs';
+import { companyResolvers } from 'gql/Company/resolvers';
+import { companyTypeDefs } from 'gql/Company/typeDefs';
+import { userResolvers } from 'gql/User/resolvers';
+import { userTypeDefs } from 'gql/User/typeDefs';
 
 const server = new ApolloServer({
   resolvers: [userResolvers, companyResolvers],

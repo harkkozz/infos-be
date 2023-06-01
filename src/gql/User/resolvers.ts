@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
-import { GraphQLError } from 'graphql';
 import jwt from 'jsonwebtoken';
+import { GraphQLError } from 'graphql';
+import { ApolloServerErrorCode } from '@apollo/server/errors';
 
 import { User } from 'entities/User';
 import { Company } from 'entities/Company';
@@ -14,6 +15,17 @@ export const userResolvers = {
     login: async (_, { user }: UserPayload) => {
       const userById = await User.findOne({ where: { email: user.email } });
       const matchedPassword = await bcrypt.compare(user.password, userById.password);
+
+      if (userById && userById?.email !== user?.email) {
+        throw new GraphQLError('Wrong email or password', {
+          extensions: {
+            code: ApolloServerErrorCode.BAD_USER_INPUT,
+            http: {
+              status: 401
+            }
+          }
+        });
+      }
 
       if (matchedPassword) {
         const token = jwt.sign(
@@ -31,19 +43,22 @@ export const userResolvers = {
             algorithm: 'HS512'
           }
         );
+        console.log(matchedPassword);
 
         return {
           message: 'Successfull',
           token
         };
+      } else {
+        throw new GraphQLError('Wrong email or password', {
+          extensions: {
+            code: ApolloServerErrorCode.BAD_USER_INPUT,
+            http: {
+              status: 401
+            }
+          }
+        });
       }
-
-      throw new GraphQLError('User is not authenticated', {
-        extensions: {
-          code: 'UNAUTHENTICATED',
-          http: { status: 401 }
-        }
-      });
     },
     signup: async (_, { user }: UserPayload) => {
       const u = new User();
