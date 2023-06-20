@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^10.9.1
     version: 10.9.1(@types/node@20.1.5)(typescript@5.0.4)
   typeorm:
-    specifier: 0.3.16
-    version: 0.3.16(pg@8.11.0)(ts-node@10.9.1)
+    specifier: 0.3.17
+    version: 0.3.17(pg@8.11.0)(ts-node@10.9.1)
 
 devDependencies:
   '@types/jsonwebtoken':
@@ -3132,8 +3132,8 @@ packages:
       is-typed-array: 1.1.10
     dev: true
 
-  /typeorm@0.3.16(pg@8.11.0)(ts-node@10.9.1):
-    resolution: {integrity: sha512-wJ4Qy1oqRKNDdZiBTTaVMqwo/XxC52Q7uNPTjltPgLhvIW173bL6Iad0lhptMOsFlpixFPaUu3PNziaRBwX2Zw==}
+  /typeorm@0.3.17(pg@8.11.0)(ts-node@10.9.1):
+    resolution: {integrity: sha512-UDjUEwIQalO9tWw9O2A4GU+sT3oyoUXheHJy4ft+RFdnRdQctdQ34L9SqE2p7LdwzafHx1maxT+bqXON+Qnmig==}
     engines: {node: '>= 12.9.0'}
     hasBin: true
     peerDependencies:
